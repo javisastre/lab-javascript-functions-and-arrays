@@ -8,6 +8,7 @@ function maxOfTwoNumbers(num1, num2) {
 }
 // Iteration #2: Find longest word
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
+
 function findLongestWord(listOfWords) {
   let longest = "";
   if (listOfWords.length === 0) {
@@ -152,6 +153,9 @@ const howManyTimes = (arrayCount, wordCount) => {
 }
 
 // Iteration #8: Bonus
+
+
+// Iteration #8: Bonus
 const matrix = [
   [8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
   [49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0],
@@ -178,17 +182,30 @@ const matrix = [
 const greatestProduct = matrix => {
   let biggest = 0;
   let stringBiggest = "";
-  for (let x = 0; x < matrix.length-3; x++) {
-    for (let y = 0; y < matrix[x].length-3; y++) {
-      if (biggest < (matrix[x][y] * matrix[x + 1][y] * matrix[x + 2][y] * matrix[x + 3][y])){
+  for (let x = 0; x < matrix.length - 3; x++) {
+    for (let y = 0; y < matrix[x].length - 3; y++) {
+      if (biggest < (matrix[x][y] * matrix[x + 1][y] * matrix[x + 2][y] * matrix[x + 3][y])) {
         biggest = (matrix[x][y] * matrix[x + 1][y] * matrix[x + 2][y] * matrix[x + 3][y]);
         stringBiggest = `${matrix[x][y]} x ${matrix[x + 1][y]} x ${matrix[x + 2][y]} x ${matrix[x + 3][y]} = ${biggest}`
       }
-      if (biggest < (matrix[x][y] * matrix[x][y + 1] * matrix[x][y + 2] * matrix[x][y + 3])){
+      if (biggest < (matrix[x][y] * matrix[x][y + 1] * matrix[x][y + 2] * matrix[x][y + 3])) {
         biggest = (matrix[x][y] * matrix[x][y + 1] * matrix[x][y + 2] * matrix[x][y + 3]);
         stringBiggest = `${matrix[x][y]} x ${matrix[x][y + 1]} x ${matrix[x][y + 2]} x ${matrix[x][y + 3]} = ${biggest}`
       }
     }
   }
-  return biggest;
+
+  for (let i = matrix.length - 1; i > matrix.length - 4; i--) {
+    for (let k = matrix.length - 1; k > matrix.length - 4; k--) {
+      if (biggest < (matrix[i][k] * matrix[i - 1][k] * matrix[i - 2][k] * matrix[i - 3][k])) {
+        biggest = (matrix[i][k] * matrix[i - 1][k] * matrix[i - 2][k] * matrix[i - 3][k]);
+        stringBiggest = `${matrix[i][k]} x ${matrix[i - 1][k]} x ${matrix[i - 2][k]} x ${matrix[i - 3][k]} = ${biggest}`;
+      }
+      if (biggest < (matrix[i][k] * matrix[i][k - 1] * matrix[i][k - 2] * matrix[i][k - 3])) {
+        biggest = (matrix[i][k] * matrix[i][k - 1] * matrix[i][k - 2] * matrix[i][k - 3]);
+        stringBiggest = `${matrix[i][k]} x ${matrix[i][k - 1]} x ${matrix[i][k - 2]} x ${matrix[i][k - 3]} = ${biggest}`;
+      }
+    }
+  }
+  return stringBiggest;
 }
